@@ -1,0 +1,3 @@
+https://github.com/haopei/frontend-nanodegree-arcade-game/blob/master/js/app.js
+http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/
+http://www.codecademy.com/glossary/javascript/switch-statements
