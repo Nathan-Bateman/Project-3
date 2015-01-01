@@ -3,20 +3,27 @@ var playerStart_X = 201,
     playerStart_Y = 440,
     playerLeftRight = 93,
     playerUpDown = 75,
-    enemySpeeds = [35,180,65,100, 120];
+    enemySpeeds = [75,200,225,110, 170, 145, 120],
+    enemyStartY = [300,145,60,221]
 
 
-//var randomitemfromarray = this[Math.floor(Math.random() * this.length)];
+var randomfromarray = function (array){
+  return array[Math.floor(Math.random() * array.length)]
+
+};
+//var randomfromarray = function(arrayname){
+  //arrayname[random * arrayname.length]
+//};
 // Enemies our player must avoid
-var Enemy = function(addsubtractfromY) {
+var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.x = 0;
-    this.y = 300 + (addsubtractfromY);
-    this.speed = enemySpeeds[Math.floor(Math.random() * enemySpeeds.length)];
+    this.y = this.start();
+    this.speed = this.changespeed();
     this.sprite = 'images/enemy-bug.png';
 }
 
@@ -28,6 +35,8 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     if (this.x>500) {
       this.x = -10;
+      this.y = randomfromarray(enemyStartY);
+      this.speed = randomfromarray(enemySpeeds);
     };
     this.x = this.x + ( this.speed * dt );
 }
@@ -36,7 +45,12 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
-
+Enemy.prototype.start = function(){
+  return randomfromarray(enemyStartY);
+}
+Enemy.prototype.changespeed =function(){
+  return randomfromarray(enemySpeeds);
+}
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -47,15 +61,19 @@ var Player = function(x,y) {
 }
 
 Player.prototype.update = function(dt){
+  this.reset();
+}
+Player.prototype.reset = function(){
   if (this.y<0) {
     this.x = playerStart_X;
     this.y = playerStart_Y;
   };
-}
+};
 
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
+
 Player.prototype.handleInput = function (input){
     switch (input) {
   case 'up':
@@ -91,15 +109,18 @@ Player.prototype.handleInput = function (input){
 } 
     };
 // Now instantiate your objects.
-var enemy1 = new Enemy(0),
-    enemy2 = new Enemy(-155),
-    enemy3 = new Enemy(-79),
-    enemy4 = new Enemy(-240);
+var enemy1 = new Enemy();
+    enemy2 = new Enemy(),
+    enemy3 = new Enemy(),
+    enemy4 = new Enemy(),
+    enemy5 = new Enemy(),
+    enemy6 = new Enemy();
+
 
 
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
-allEnemies.push(enemy1,enemy2,enemy3,enemy4);
+allEnemies.push(enemy1,enemy2,enemy3,enemy4,enemy5,enemy6);
 // Place the player object in a variable called player
 var player = new Player(playerStart_X,playerStart_Y);
 
