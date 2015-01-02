@@ -3,7 +3,7 @@ var playerStart_X = 201,
     playerStart_Y = 440,
     playerLeftRight = 93,
     playerUpDown = 75,
-    enemySpeeds = [75,200,225,110, 170, 145, 120],
+    enemySpeeds = [190,200,225,110, 170, 145, 120],
     enemyStartY = [300,145,60,221]
 
 
@@ -21,7 +21,7 @@ var Enemy = function() {
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.x = 0;
+    this.x = -80;
     this.y = this.start();
     this.speed = this.changespeed();
     this.sprite = 'images/enemy-bug.png';
@@ -33,13 +33,19 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    var rangex = 40;
+    var rangey = 30;
+   if(Math.abs(player.x - this.x)<=rangex && Math.abs(player.y - this.y)<=rangey){
+      player.reset();
+    }
     if (this.x>500) {
-      this.x = -10;
+      this.x = -80;
       this.y = randomfromarray(enemyStartY);
       this.speed = randomfromarray(enemySpeeds);
     };
     this.x = this.x + ( this.speed * dt );
 }
+
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -61,14 +67,14 @@ var Player = function(x,y) {
 }
 
 Player.prototype.update = function(dt){
+  if (this.y<0) {
   this.reset();
 }
+}
 Player.prototype.reset = function(){
-  if (this.y<0) {
     this.x = playerStart_X;
     this.y = playerStart_Y;
-  };
-};
+}
 
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -115,12 +121,13 @@ var enemy1 = new Enemy();
     enemy4 = new Enemy(),
     enemy5 = new Enemy(),
     enemy6 = new Enemy();
+    enemy7 = new Enemy();
 
 
 
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
-allEnemies.push(enemy1,enemy2,enemy3,enemy4,enemy5,enemy6);
+allEnemies.push(enemy1,enemy2,enemy3,enemy4,enemy5,enemy6,enemy7);
 // Place the player object in a variable called player
 var player = new Player(playerStart_X,playerStart_Y);
 
