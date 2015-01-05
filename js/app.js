@@ -6,6 +6,7 @@ var playerStart_X = 201,
     enemySpeeds = [190,200,225,250, 170, 145, 120],
     enemyStartY = [300,145,60,221],
     score = 0;
+
   
 var randomfromarray = function (array){
   return array[Math.floor(Math.random() * array.length)]
