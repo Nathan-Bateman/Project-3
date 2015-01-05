@@ -3,18 +3,28 @@ var playerStart_X = 201,
     playerStart_Y = 440,
     playerLeftRight = 93,
     playerUpDown = 75,
-    enemySpeeds = [190,200,225,110, 170, 145, 120],
-    enemyStartY = [300,145,60,221]
-
-
+    enemySpeeds = [190,200,225,250, 170, 145, 120],
+    enemyStartY = [300,145,60,221],
+    score = 0;
+  
+var randomfromarray = function (array){
+  return array[Math.floor(Math.random() * array.length)]
+};
+var scoreDisplay = function(){
+  document.getElementById('scoreboard').innerHTML = 'Score: ' + score;
+};
+var timeDisplay = function(){
+  document.getElementById('timer').innerHTML = 'Time: ';
+};
+scoreDisplay();
+timeDisplay();
 var randomfromarray = function (array){
   return array[Math.floor(Math.random() * array.length)]
 
 };
-//var randomfromarray = function(arrayname){
-  //arrayname[random * arrayname.length]
-//};
+
 // Enemies our player must avoid
+
 var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -67,8 +77,11 @@ var Player = function(x,y) {
 }
 
 Player.prototype.update = function(dt){
+  scoreDisplay();
   if (this.y<0) {
-  this.reset();
+  this.reset()
+  score = score + 5;
+  scoreDisplay();
 }
 }
 Player.prototype.reset = function(){
