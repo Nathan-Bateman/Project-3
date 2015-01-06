@@ -1,3 +1,18 @@
 body {
     text-align: center;
 }
+#scoreboard {
+	float: left;
+	margin-left: 80px;
+	font-family: sans-serif;
+	font-size: 4em;
+	color: blue;
+}
+#timer {
+	float: right;
+	margin-right: 120px;
+	font-family: sans-serif;
+	font-size: 4em;
+	color: red;
+}
+

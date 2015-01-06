@@ -1,4 +1,5 @@
 
+//variable declarations for player movements, locations, and enemy locations and speeds
 var playerStart_X = 201,
     playerStart_Y = 440,
     playerLeftRight = 93,
@@ -6,32 +7,40 @@ var playerStart_X = 201,
     enemySpeeds = [190,200,225,250, 170, 145, 120],
     enemyStartY = [300,145,60,221],
     score = 0;
-
-  
+//chooses a random item from an array
 var randomfromarray = function (array){
   return array[Math.floor(Math.random() * array.length)]
 };
+
 var scoreDisplay = function(){
   document.getElementById('scoreboard').innerHTML = 'Score: ' + score;
 };
+//the above and below functions display the time and score
 var timeDisplay = function(){
-  document.getElementById('timer').innerHTML = 'Time: ';
+  document.getElementById('timer').innerHTML = 'Time: 30';
 };
-scoreDisplay();
-timeDisplay();
-var randomfromarray = function (array){
-  return array[Math.floor(Math.random() * array.length)]
+  timeDisplay();
+//counts down from 30 seconds
+var Countdown = function(){
+      if (timeLeft == 0) {
+    clearTimeout(timerID);
+    document.getElementById('timer').innerHTML = 'Time: 0';
+    } else {
+      document.getElementById('timer').innerHTML = 'Time: ' + timeLeft;
+      timeLeft --;
+    }
+  
+    };
+var timeLeft = 30;
 
+var timerID = setInterval(Countdown, 1000);
+//causes the Countdown to run continuously as with the Player and Enemy functions
+Countdown.prototype.update = function(dt){
+  Countdown();
 };
 
 // Enemies our player must avoid
-
 var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
     this.x = -80;
     this.y = this.start();
     this.speed = this.changespeed();
@@ -41,9 +50,6 @@ var Enemy = function() {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
     var rangex = 40;
     var rangey = 30;
    if(Math.abs(player.x - this.x)<=rangex && Math.abs(player.y - this.y)<=rangey){
@@ -62,9 +68,11 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
+//chooses a random Y start from the passed array
 Enemy.prototype.start = function(){
   return randomfromarray(enemyStartY);
 }
+//chooses a random speed  from the passed array
 Enemy.prototype.changespeed =function(){
   return randomfromarray(enemySpeeds);
 }
@@ -76,7 +84,7 @@ var Player = function(x,y) {
     this.y = y;
     this.sprite = 'images/char-boy.png';
 }
-
+//displays the scoreboard and updates each time the player reaches the end
 Player.prototype.update = function(dt){
   scoreDisplay();
   if (this.y<0) {
@@ -85,6 +93,7 @@ Player.prototype.update = function(dt){
   scoreDisplay();
 }
 }
+//resets player position
 Player.prototype.reset = function(){
     this.x = playerStart_X;
     this.y = playerStart_Y;
@@ -93,7 +102,7 @@ Player.prototype.reset = function(){
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
-
+//constrains the player to the visible sprite and increments at specified distance
 Player.prototype.handleInput = function (input){
     switch (input) {
   case 'up':
