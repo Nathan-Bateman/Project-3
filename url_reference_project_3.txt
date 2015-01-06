@@ -1,12 +1,50 @@
 https://github.com/haopei/frontend-nanodegree-arcade-game/blob/master/js/app.js
+
+When I began the project. I had no clue how to start. I read through many posts and finally viewed
+the code of others. Mainly, the one above. I saw how he did things such as the switch statement to 
+get the player to move and confine him to the space. I implemented a very similar style of making
+players move with my own. I understand the switch statement, but if I need to accomplish it some other
+way, I am happy to do that as well. I also got insights in the way of storing different positions and
+speeds in an array and then selecting one for implementation at different times. I looked up the 
+methods of accomplishing this from other sources.
+
 http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/
+
+used the above for the purpose of understanding more about the canvas
+
 http://www.codecademy.com/glossary/javascript/switch-statements
+
+used this as a way to reference code formatting and syntax - particularly the switch statement
+
 http://en.wikipedia.org/wiki/Delta_timing
+
+Looked a bit at this, but not long
+
 http://www.w3schools.com/jsref/jsref_obj_math.asp
-https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+
+used this for referencing how to make the bugs and player collide as well as selecting something randomly 
+from an array
+
 http://stackoverflow.com/questions/4550505/getting-random-value-from-an-array
+
+selecting something randomly from an array
+
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+selecting something random from an array
+
 http://www.gamefromscratch.com/post/2012/11/26/GameDev-math-recipes-Collision-detection-using-an-axis-aligned-bounding-box.aspx
+
+used this as suggested on the forums, but did not implement the concept as I did not fully understand how to
+
 https://github.com/PatrickO10/froggerArcade/blob/master/js/app.js
+
+used when trying to write collision function
+
 http://www.w3schools.com/jsref/met_doc_getelementbyid.asp
+
+used when trying to post score and time to the game
+
 http://stackoverflow.com/questions/4435776/simple-clock-that-counts-down-from-30-seconds-and-executes-a-function-afterward
+
+used to implement the countdown into the game
